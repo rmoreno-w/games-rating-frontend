@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(360deg, #000000 0%, #434343 100%) no-repeat;
+    min-height: 100vh;
+}
+
+.green-Shadow {
+    box-shadow: 5px 5px 15px rgba(250, 250, 255, 0.2);
+}

@@ -1,26 +1,37 @@
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { tokenAtom, userNameAtom } from '../../../pages/login';
+import React, { useEffect } from 'react';
 import { NavBarLink } from '../NavBarLink';
 
+export const apiTokenAtom = atom('');
+export const userNameAtom = atom('');
+
 export function Header() {
-    const [apiToken, setApiToken] = useAtom(tokenAtom);
+    const router = useRouter();
+
+    const [apiToken, setApiToken] = useAtom(apiTokenAtom);
     const [userName, setUserName] = useAtom(userNameAtom);
 
-    const router = useRouter();
+    useEffect(() => {
+        let retrievedToken = window.localStorage.getItem('gamesRatingApiToken') || '';
+        let retrievedUserName = window.localStorage.getItem('gamesRatingUserName') || '';
+        setApiToken(retrievedToken);
+        setUserName(retrievedUserName);
+    }, []);
 
     function Logout(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
 
-        setUserName('');
+        window.localStorage.removeItem('gamesRatingApiToken');
+        window.localStorage.removeItem('gamesRatingUserName');
         setApiToken('');
+        setUserName('');
     }
 
     return (
-        <header className='px-4 desktop:px-28 largest:px-40 grid grid-cols-4 bg-[#00000080] text-green-50 sticky top-0 shadow-md rounded-b-[20px] py-4 border border-green-50/10 green-Shadow'>
+        <header className='px-4 desktop:px-28 largest:px-40 grid grid-cols-4 bg-[#0a100d] text-green-50 sticky top-0 shadow-md rounded-b-[20px] py-4 border border-green-50/10 green-Shadow z-10'>
             <nav className='flex items-center justify-center col-start-2 col-span-2'>
                 <NavBarLink pathname='playstation' />
                 <NavBarLink pathname='xbox' />

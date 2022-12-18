@@ -1,10 +1,12 @@
 import { Provider } from 'jotai';
 import type { AppProps } from 'next/app';
+import { Header } from '../src/components/Header';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <Provider>
+            <Header />
             <Component {...pageProps} />
         </Provider>
     );

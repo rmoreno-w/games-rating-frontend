@@ -1,18 +1,29 @@
 import type { NextPage } from 'next';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { apiClient } from '../services/axios';
+import { Container } from '../src/components/Container';
+import { GameCard } from '../src/components/GameCard';
+import Loader from '../src/components/Loader';
+import { gameInfoType } from '../types/gameInfo';
 
 const Playstation: NextPage = () => {
+    const [gamesArray, setGamesArray] = useState<gameInfoType[]>([]);
+
     useEffect(() => {
-        apiClient.get('consoles/topGames/639f18b630b6cdf60d61f22c').then();
+        console.log(gamesArray.length);
+    }, [gamesArray.length]);
+
+    useEffect(() => {
+        apiClient.get('consoles/topGames/639f18b630b6cdf60d61f22c').then((apiReturn) => {
+            setGamesArray(apiReturn.data);
+            console.log(gamesArray);
+        });
     }, []);
 
     return (
-        <>
-            <main className='relative mx-4 py-6 px-6 my-6 sm:py-12 sm:px-16 sm:m-12 desktop:px-24 desktop:py-12 large:px-32 large:py-16 desktop:mx-28 desktop:my-16 max-w-[1520px] largest:mx-auto flex flex-col gap-6 sm:gap-12 justify-center bg-[#00000080] rounded-[20px]  text-green-50 shadow-md green-Shadow backdrop-blur-2xl text-sm md:text-base'>
-                <p>Selecione um console no menu de navegacão para ver os 3 jogos mais bem avaliados!</p>
-            </main>
-        </>
+        <Container>
+            {gamesArray.length == 0 ? <Loader /> : gamesArray.map((game: gameInfoType) => <GameCard gameInfo={game} />)}
+        </Container>
     );
 };
 

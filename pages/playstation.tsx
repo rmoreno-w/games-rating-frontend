@@ -10,19 +10,18 @@ const Playstation: NextPage = () => {
     const [gamesArray, setGamesArray] = useState<gameInfoType[]>([]);
 
     useEffect(() => {
-        console.log(gamesArray.length);
-    }, [gamesArray.length]);
-
-    useEffect(() => {
         apiClient.get('consoles/topGames/639f18b630b6cdf60d61f22c').then((apiReturn) => {
             setGamesArray(apiReturn.data);
-            console.log(gamesArray);
         });
     }, []);
 
     return (
         <Container>
-            {gamesArray.length == 0 ? <Loader /> : gamesArray.map((game: gameInfoType) => <GameCard gameInfo={game} />)}
+            {gamesArray.length == 0 ? (
+                <Loader />
+            ) : (
+                gamesArray.map((game: gameInfoType) => <GameCard key={game.id} gameInfo={game} />)
+            )}
         </Container>
     );
 };

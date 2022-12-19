@@ -32,7 +32,7 @@ const Login: NextPage = () => {
                 password: passwordData,
             })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 window.localStorage.setItem('gamesRatingApiToken', response.data.token);
                 window.localStorage.setItem('gamesRatingUserName', response.data.userExists.name);
                 setApiToken(response.data.token);

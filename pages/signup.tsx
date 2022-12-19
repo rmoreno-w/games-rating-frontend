@@ -22,8 +22,6 @@ const Signup: NextPage = () => {
                 password: passwordData,
             })
             .then((response) => {
-                console.log(response);
-
                 router.push('/login');
             })
             .catch((error) => {

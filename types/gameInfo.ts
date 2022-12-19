@@ -12,4 +12,4 @@ export type gameInfoType = {
     createdAt: string;
     updatedAt: string;
     id: string;
-};
+} | null;

@@ -85,7 +85,7 @@ const Login: NextPage = () => {
                     <p>
                         Ou ainda, se você não é cadastrado,{' '}
                         <Link href='/contact'>
-                            <span className='font-bold text-green-400 hover:bg-green-400 hover:text-green-50 transition-colors duration-250'>
+                            <span className='font-bold text-green-400 hover:bg-green-600 hover:text-green-50 transition-colors duration-250'>
                                 clique aqui
                             </span>
                         </Link>{' '}

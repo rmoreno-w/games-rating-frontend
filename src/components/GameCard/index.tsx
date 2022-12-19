@@ -6,12 +6,12 @@ interface gameCardProps {
 }
 export function GameCard({ gameInfo }: gameCardProps) {
     return (
-        <article className='border border-green-100 rounded-xl flex flex-col sm:flex-row gap-4 sm:gap-12'>
-            <div className='h-[150px] sm:h-[300px] sm:w-[300px] relative'>
-                <Image src={gameInfo.img} fill alt='Zelda GB' className='' />
+        <article className='border border-green-100 rounded-xl grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-3 sm:flex-row gap-4 sm:gap-12 overflow-hidden'>
+            <div className='h-full relative'>
+                <Image src={gameInfo.img} fill alt='Zelda GB' className='object-fill' />
             </div>
 
-            <div className='px-8 sm:px-0 py-4 sm:py-8 flex flex-col gap-4 justify-between flex-grow'>
+            <div className='px-8 sm:px-0 py-4 sm:py-8 flex flex-col gap-4 justify-between sm:col-span-2'>
                 <h2 className='text-center font-bold text-2xl text-green-400'>{gameInfo.title}</h2>
                 <p className='font-light'>
                     <span className='font-bold'>Resumo</span>

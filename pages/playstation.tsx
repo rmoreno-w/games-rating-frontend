@@ -20,7 +20,7 @@ const Playstation: NextPage = () => {
             {gamesArray.length == 0 ? (
                 <Loader />
             ) : (
-                gamesArray.map((game: gameInfoType) => <GameCard key={game.id} gameInfo={game} />)
+                gamesArray.map((game: gameInfoType) => <GameCard key={game!.id} gameInfo={game} />)
             )}
         </Container>
     );

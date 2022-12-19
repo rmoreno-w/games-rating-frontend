@@ -4,6 +4,7 @@ import { apiClient } from '../services/axios';
 import { Container } from '../src/components/Container';
 import { GameCard } from '../src/components/GameCard';
 import Loader from '../src/components/Loader';
+import { SearchBar } from '../src/components/SearchBar';
 import { gameInfoType } from '../types/gameInfo';
 
 const Xbox: NextPage = () => {
@@ -20,7 +21,12 @@ const Xbox: NextPage = () => {
             {gamesArray.length == 0 ? (
                 <Loader />
             ) : (
-                gamesArray.map((game: gameInfoType) => <GameCard key={game!.id} gameInfo={game} />)
+                <>
+                    <SearchBar />
+                    {gamesArray.map((game: gameInfoType) => (
+                        <GameCard key={game!.id} gameInfo={game} />
+                    ))}
+                </>
             )}
         </Container>
     );

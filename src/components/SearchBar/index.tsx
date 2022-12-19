@@ -11,27 +11,20 @@ export function SearchBar() {
     const debouncedSearchQuery = useDebounce(searchQuery, 500);
     const router = useRouter();
 
-    async function apiSearch(e: React.MouseEvent<HTMLButtonElement>) {
-        router.push('');
-        apiClient
-            .get(`games/find/autocomplete?${searchOption}=${searchQuery}`)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    async function apiSearch() {
+        router.push(`/search/${searchOption}?searchParam=${searchOption}&searchQuery=${searchQuery}`);
     }
 
     function apiAutoComplete() {
-        apiClient
-            .get(`games/find/autocomplete?${searchOption}=${searchQuery}`)
-            .then((response) => {
-                setSuggestedResults(response.data);
-            })
-            .catch((error) => {
-                setSuggestedResults([]);
-            });
+        searchQuery &&
+            apiClient
+                .get(`games/find/autocomplete?${searchOption}=${searchQuery}`)
+                .then((response) => {
+                    setSuggestedResults(response.data);
+                })
+                .catch((error) => {
+                    setSuggestedResults([]);
+                });
     }
 
     // Effect para fazer Debouncing
@@ -72,14 +65,11 @@ export function SearchBar() {
                     placeholder='Procurar por...'
                     type='search'
                 />
-                <button
-                    className='relative h-full bg-transparent'
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => apiSearch(e)}
-                >
+                <button className='relative h-full bg-transparent' onClick={() => apiSearch()}>
                     <Image src='/search.svg' alt='' fill />
                 </button>
             </div>
-            {suggestedResults.length > 1 && searchQuery && (
+            {searchQuery && suggestedResults.length >= 1 && searchQuery != suggestedResults[0] && (
                 <ul className='w-3/4  border border-l-green-50 border-b-green-50 border-r-green-50 border-t-transparent rounded ml-[8%]'>
                     {suggestedResults.map((suggestion) => {
                         return (

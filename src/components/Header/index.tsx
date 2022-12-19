@@ -40,18 +40,24 @@ export function Header() {
             </nav>
             <div className='flex justify-center sm:justify-end items-center sm:col-start-4 sm:col-span-1'>
                 {apiToken ? (
-                    <>
-                        <div className='flex flex-col items-center p-3'>
+                    <div className='p-4 rounded-lg border border-green-50 flex gap-4 justify-center items-start'>
+                        <div className='flex flex-col items-center'>
                             <Image src='/person.svg' alt='' width={36} height={36} />
                             {userName}
+                            <Link
+                                href={'/registerGame'}
+                                className='hover:underline underline-offset-2 decoration-green-50'
+                            >
+                                Cadastrar novo jogo
+                            </Link>
                         </div>
                         <button
-                            className='flex justify-center border border-green-50 items-center p-2 mt-1 hover:underline underline-offset-2 decoration-green-50'
+                            className='self-center border border-red-700 items-center p-2 hover:underline underline-offset-2 decoration-red-700 rounded-md'
                             onClick={(e) => Logout(e)}
                         >
                             Sair
                         </button>
-                    </>
+                    </div>
                 ) : (
                     <Link href='/login'>
                         <button className='flex flex-col items-center p-3'>

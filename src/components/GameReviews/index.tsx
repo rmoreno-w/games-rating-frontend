@@ -81,7 +81,7 @@ export function GameReviews({ gameId, gameRatingsByUsers }: gameReviewsProps) {
             </ul>
 
             {apiToken ? (
-                <form className='flex flex-col self-start w-1/2 gap-4'>
+                <form className='flex flex-col self-start w-1/2 gap-4 border border-green-600 p-8 rounded-md'>
                     <p>Nos ajude a melhorar a avaliação deste jogo e dê você também a sua avaliação!</p>
 
                     <label className=''>Sua nota para o jogo (um numero de 0 a 10): </label>

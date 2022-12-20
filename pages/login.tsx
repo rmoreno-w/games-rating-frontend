@@ -84,7 +84,7 @@ const Login: NextPage = () => {
                     </form>
                     <p>
                         Ou ainda, se você não é cadastrado,{' '}
-                        <Link href='/contact'>
+                        <Link href='/signup'>
                             <span className='font-bold text-green-400 hover:bg-green-600 hover:text-green-50 transition-colors duration-250'>
                                 clique aqui
                             </span>
